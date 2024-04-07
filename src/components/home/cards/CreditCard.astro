@@ -1,0 +1,141 @@
+---
+import { accounts } from "../../../models/schema";
+import { db } from "../../../utils/db";
+
+const results = await db.select({balance:accounts.balance}).from(accounts);
+
+let totalBalance = 0; // Initialize total balance
+
+results.forEach(account => {
+  totalBalance += account.balance; // Sum up the balances
+});
+
+---
+<div class="flex items-center justify-center h-full w-full">
+  <svg
+    class="credit-card"
+    width="400"
+    height="250"
+    viewBox="0 0 400 250"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      width="400"
+      height="250"
+      rx="15"
+      fill="url(#paint0_linear)"
+    ></rect>
+    <!-- Visa Card Chip -->
+    <rect
+      x="30"
+      y="40"
+      width="60"
+      height="45"
+      rx="10"
+      fill="silver"
+      stroke="black"
+      stroke-width="2"
+    ></rect>
+    <circle cx="45" cy="55" r="5" fill="white"></circle>
+    <circle cx="75" cy="55" r="5" fill="white"></circle>
+    <circle cx="60" cy="70" r="5" fill="white"></circle>
+    <!-- Visa Logo -->
+    <text
+      x="290"
+      y="80"
+      fill="white"
+      font-family="Arial, sans-serif"
+      font-size="24"
+      font-weight="bold"
+    >VISA</text>
+    <!-- Card Number -->
+    <text
+      x="20"
+      y="140"
+      fill="white"
+      font-family="Arial, sans-serif"
+      font-size="18"
+      letter-spacing="4"
+    >1234 5678 9012 3456</text>
+    <!-- Expiry Date -->
+    <text
+      x="20"
+      y="170"
+      fill="white"
+      font-family="Arial, sans-serif"
+      font-size="16"
+    >Expiry: 10/25</text>
+    <!-- Cardholder Name -->
+    <text
+      x="20"
+      y="200"
+      fill="white"
+      font-family="Arial, sans-serif"
+      font-size="16"
+      font-weight="bold"
+    >FRUGAL THINKER</text>
+    <!-- Customizable Amount -->
+    <text
+      id="debit-amount"
+      x="250"
+      y="200"
+      fill="white"
+      font-family="Arial, sans-serif"
+      font-size="16"
+      font-weight="bold"
+    >Amount: {totalBalance.toFixed(2)} </text>
+    <defs>
+      <linearGradient
+        id="paint0_linear"
+        x1="0"
+        y1="0"
+        x2="0"
+        y2="250"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#667eea"></stop>
+        <stop offset="1" stop-color="#764ba2"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+<style>
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes gradientAnimation {
+    0% {
+      stop-color: #667eea;
+    }
+    50% {
+      stop-color: #764ba2;
+    }
+    100% {
+      stop-color: #667eea;
+    }
+  }
+
+  .credit-card {
+    animation: zoomIn 1s ease-out forwards;
+  }
+
+  #paint0_linear stop {
+    animation: gradientAnimation 50s infinite alternate;
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

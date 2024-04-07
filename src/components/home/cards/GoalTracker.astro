@@ -1,0 +1,61 @@
+---
+const goalResults = await Astro.glob("../../../pages/goals/*.md");
+---
+
+<!-- The h3 is visually integrated into the div below -->
+<div class="bg-logoBlue px-4 pt-5 pb-2 rounded-t-lg sm:px-6 shadow">
+  <h3 class="text-lg leading-6 font-light text-white tracking-wide">
+    My Victories 🏆
+  </h3>
+</div>
+<div class="bg-white shadow overflow-hidden sm:rounded-b-md">
+  <ul class="divide-y divide-gray-200">
+    <!-- Use Astro's expression syntax to iterate over your goal results -->
+    {
+      goalResults.map((goal) => (
+        <li>
+          <div class="block hover:bg-gray-50">
+            <div class="px-4 py-4 sm:px-6">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-mono text-gray-700 truncate">
+                  {goal.frontmatter.title}
+                </p>
+                <div class="ml-2 flex-shrink-0 flex">
+                  <p
+                    class={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      goal.frontmatter.status === "On-Track"
+                        ? "bg-green-100 text-green-800"
+                        : goal.frontmatter.status === "Not Started"
+                        ? "bg-gray-100 text-gray-800"
+                        : goal.frontmatter.status === "Completed"
+                        ? "bg-blue-100 text-blue-800"
+                        : "bg-red-100 text-red-800"
+                    }`}
+                  >
+                    {goal.frontmatter.status}
+                  </p>
+                </div>
+              </div>
+              <div class="mt-2 sm:flex sm:justify-between">
+                <div class="sm:flex">
+                  <p class="flex items-center text-sm font-mono text-gray-500">
+                    <span class="mr-2">Target</span>
+                    <time datetime={goal.frontmatter.targetDate}>
+                      {goal.frontmatter.targetDate}
+                    </time>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+  <button
+    type="button"
+    class="inline-flex items-center m-4 px-4 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-700 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+  >
+    View All
+  </button>
+</div>

@@ -1,0 +1,75 @@
+---
+// Import the ApexOptions type for props validation
+import type { ApexOptions } from 'apexcharts';
+
+// Define the component props
+export interface Props {
+  options: ApexOptions;
+}
+
+// Extract props
+const { options } = Astro.props;
+---
+
+<script>
+  import ApexCharts from 'apexcharts';
+
+  // Define a custom HTMLElement for the chart
+  class ChartElement extends HTMLElement {
+    // Method to merge chart options with default settings and conditional formatting
+    getChartOptions() {
+      const defaultChartOptions = {
+        chart: {
+          animations: { enabled: false },
+          foreColor: document.documentElement.classList.contains('dark') ? '#eeeeee' : '#111827',
+          fontFamily: 'Titillium Web, sans-serif',
+          toolbar: { show: false }
+        },
+        title: {
+          align: 'center',
+          style: {
+            color: document.documentElement.classList.contains('dark') ? '#eeeeee' : '#000000',
+            fontSize: '28px'
+          }
+        }
+      };
+
+      const passedOptions = JSON.parse(this.dataset.options!) || {};
+
+      // Merge default options, passed options, and conditional formatter
+      return {
+        ...defaultChartOptions,
+        ...passedOptions
+      };
+    }
+
+    // Lifecycle callback when element is added to the DOM
+    connectedCallback() {
+      if (!this.isConnected) return;
+      const chartOptions = this.getChartOptions();
+      const chartContainer = this.querySelector('div');
+      if (chartContainer) {
+        const chart = new ApexCharts(chartContainer, chartOptions);
+        chart.render();
+      }
+    }
+  }
+
+  // Define the custom element if it's not already defined
+  if (!customElements.get('apex-chart')) {
+    customElements.define('apex-chart', ChartElement);
+  }
+</script>
+
+<!-- Use the custom element in the component's HTML, passing options and formatter data -->
+<apex-chart data-options={JSON.stringify(options)}>
+  <div class="flex items-center justify-center h-full w-full apex-chart"></div>
+</apex-chart>
+
+<style is:global>
+  .apex-chart{
+    width:400px;
+    margin:0px;
+    padding:0px;
+  }
+</style>

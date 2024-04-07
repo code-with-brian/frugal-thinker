@@ -1,0 +1,48 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1711957550399,
+      "tag": "0000_tired_ted_forrester",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1711957602850,
+      "tag": "0001_fantastic_mandroid",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1711957993730,
+      "tag": "0002_certain_lightspeed",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1711958141551,
+      "tag": "0003_cold_galactus",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1712030620406,
+      "tag": "0004_unique_goblin_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1712076903157,
+      "tag": "0005_silky_zaladane",
+      "breakpoints": true
+    }
+  ]
+}

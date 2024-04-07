@@ -1,0 +1,89 @@
+---
+import Search from "astro-pagefind/components/Search";
+export const prerender = false;
+
+const q = Astro.url.searchParams.get("q") ?? undefined;
+---
+
+<Search id="search" query={q} className="rounded-xl max-w-md mx-auto mt-6" />
+
+
+<style is:global>
+  :root {
+  --pagefind-ui-scale: 1 !important; /* Set scale to 1 for better readability */
+  --pagefind-ui-primary: #2d2d2d !important; /* A darker primary color for better contrast */
+  --pagefind-ui-text: #ffffff !important; /* White text for dark backgrounds */
+  --pagefind-ui-message-text: #dcdcdc !important; /* A lighter color for messages */
+  --pagefind-ui-result-title-text: #ffd700 !important; /* A gold color to highlight titles */
+  --pagefind-ui-result-text: #f8f8f8 !important; /* A very light grey for result text */
+  --pagefind-ui-background: #333333 !important; /* A dark background for contrast */
+  --pagefind-input-background: #444444 !important; /* A slightly lighter background for input fields */
+  --pagefind-ui-border: #555555 !important; /* A medium grey for borders */
+  --pagefind-ui-tag: #ff4500 !important; /* A bright color to highlight tags */
+  --pagefind-ui-border-width: 1px !important; /* Thinner borders for a sleek look */
+  --pagefind-ui-border-radius: 4px !important; /* Smaller border radius for a modern look */
+  --pagefind-ui-font: 'Arial', sans-serif !important; /* A more standard font */
+  --pagefind-button-background: #444444 !important; /* Match input background */
+  --pagefind-button-color: #dcdcdc !important; /* Match message text color */
+}
+
+/* Additional styles for better layout and typography */
+#search .pagefind-ui__search-input, #search .pagefind-ui__search-clear {
+  background-color: var(--pagefind-input-background) !important;
+  color: var(--pagefind-ui-text) !important;
+  border-radius: var(--pagefind-ui-border-radius) !important;
+  border: var(--pagefind-ui-border-width) solid var(--pagefind-ui-border) !important;
+  padding: 0.5rem !important;
+  font-size: 1rem !important; /* Standard font size for input */
+}
+
+#search .pagefind-ui__result-title, #search .pagefind-ui__result-link {
+  display: block !important; /* Full-width titles for clarity */
+  font-weight: bold !important; /* Bold titles */
+  font-size: 1.25rem !important; /* Larger font size for titles */
+  color: var(--pagefind-ui-result-title-text) !important;
+  margin-bottom: 0.25rem !important; /* Space below the title */
+}
+
+#search .pagefind-ui__result-excerpt {
+  color: var(--pagefind-ui-result-text) !important;
+  font-weight: normal !important;
+  font-size: 1rem !important; /* Standard font size for excerpts */
+  line-height: 1.4 !important; /* Improved line height for readability */
+  margin-bottom: 1rem !important; /* Space below excerpts */
+}
+
+#search .pagefind-ui__message {
+  color: var(--pagefind-ui-message-text) !important;
+  margin: 1rem 0 !important; /* More space around messages */
+}
+
+#search .pagefind-ui__button {
+  color: var(--pagefind-button-color) !important;
+  background: var(--pagefind-button-background) !important;
+  padding: 0.5rem 1rem !important; /* Padding for buttons */
+  border-radius: var(--pagefind-ui-border-radius) !important; /* Rounded corners for buttons */
+  border: none !important; /* Remove borders for buttons */
+  font-weight: bold !important;
+}
+
+/* Highlighting searched terms in the excerpt */
+#search .pagefind-ui__result-excerpt em {
+  background-color: var(--pagefind-ui-tag) !important; /* Highlight background */
+  font-style: normal !important; /* Keep the text style normal */
+  color: #000 !important; /* Dark text for the highlight */
+}
+
+#search .pagefind-ui__search-input {
+  padding-left: 3em !important; /* Adjust as necessary to make room for the icon */
+  background-position: left 10px center !important; /* Adjust the horizontal position as needed */
+  background-repeat: no-repeat !important;
+}
+
+#search .pagefind-ui__results-container {
+  width: 80% !important; /* Set the width to 80% of its parent container */
+  margin: 0 auto !important; /* Center the block by setting automatic margins on both sides */
+}
+
+
+</style>

@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+import logoImage from "../../../../public/images/logo.png";
+const allPosts = await Astro.glob('../../../pages/posts/*.md');
+---
+
+<div class="relative flex justify-center gap-x-4">
+  <Image src={logoImage} alt="A wealthy pig because he's frugal" loading="eager" />
+</div>
+
+
+<div class="flex flex-col mt-6 font-mono w-full p-4">
+  <ul class="list-none p-0 m-0">
+    {allPosts.map((post) => (
+      <li class="mb-4 flex items-center">
+        <span class="text-lg font-semibold text-white hover:text-blue-800 transition-colors duration-200 ease-in-out mr-2">
+          {post.frontmatter.title}
+        </span>
+        <span class="dots text-white flex-grow text-right mr-2"></span>
+        <span class="text-sm text-gray-500 whitespace-nowrap">
+          {new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </span>
+      </li>
+      <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-4 dark:bg-logoBlue">
+    ))}
+  </ul>
+</div>

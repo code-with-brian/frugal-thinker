@@ -1,0 +1,102 @@
+---
+import Welcome from "./cards/Welcome.astro";
+import CreditCard from "./cards/CreditCard.astro";
+import DebtBurndown from "./cards/DebtBurndown.astro";
+import PromotedPost from "./cards/PromotedPost.astro";
+import GoalTracker from "./cards/GoalTracker.astro";
+import SocialLinks from "./cards/SocialLinks.astro";
+import SearchBox from "./cards/SearchBox.astro";
+import Ecommerce from "./cards/Ecommerce.astro";
+import PromotedYouTube from "./cards/PromotedYouTube.astro";
+import KPI from "./cards/KPI.astro";
+---
+
+<SearchBox />
+
+<section>
+  <div class="p-10 tall-viewport-adjustment">
+    <div
+      class="grid grid-cols-1 gap-4 list-none md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 custom-grid"
+    >
+      <div
+        class="lg:row-span-2 ring-1 dark:ring-white/10 ring-primary/5 bg-white dark:bg-secondary shadow-xl dark:shadow-thick rounded-3xl p-8 md:col-span-1 custom-grid-item"
+      >
+        <Welcome />
+      </div>
+      <div
+        class="ring-1 dark:ring-white/10 ring-primary/5 rounded-3xl shadow-xl dark:shadow-thick p-8 bg-white dark:bg-secondary custom-grid-item"
+      >
+        <CreditCard />
+      </div>
+      <div
+        class="ring-1 dark:ring-white/10 ring-primary/5 flex flex-col justify-between items-center rounded-3xl shadow-xl dark:shadow-thick p-8 bg-white dark:bg-secondary overflow-hidden text-center lg:text-left custom-grid-item"
+      >
+        <DebtBurndown />
+      </div>
+      <div
+        class="ring-1 flex flex-col justify-between group hover:ring-primary/10 dark:hover:ring-white/20 duration-300 h-full dark:ring-white/10 ring-primary/5 rounded-3xl p-8 bg-white dark:bg-secondary shadow-xl dark:shadow-thick custom-grid-item"
+      >
+      <SocialLinks />
+      </div>
+      <div
+        class="lg:row-span-1 ring-1 dark:ring-white/10 ring-primary/5 hover:ring-primary/5 bg-white dark:bg-secondary dark:hover:ring-white/20 overflow-hidden duration-300 shadow-xl dark:shadow-thick rounded-3xl p-8 custom-grid-item"
+      >
+        <GoalTracker />
+      </div>
+      <div
+        class="lg:col-span-3 xl:col-span-2 h-full flex flex-col justify-between lg:row-span-1 ring-1 dark:ring-white/10 ring-primary/5 bg-white dark:bg-secondary shadow-xl dark:shadow-thick rounded-3xl p-8 custom-grid-item"
+      >
+        <PromotedPost />
+      </div>
+      <div
+        class="lg:col-span-2 xl:col-span-2 h-full flex flex-col justify-between lg:row-span-2 ring-1 dark:ring-white/10 ring-primary/5 bg-white dark:bg-secondary shadow-xl dark:shadow-thick rounded-3xl p-8 custom-grid-item"
+      >
+        <KPI />
+      </div>
+      <div
+        class="lg:col-span-1 xl:col-span-1 h-full flex flex-col justify-between lg:row-span-2 ring-1 dark:ring-white/10 ring-primary/5 bg-white dark:bg-secondary shadow-xl dark:shadow-thick rounded-3xl p-8 custom-grid-item"
+      >
+        <Ecommerce />
+      </div>
+      <div
+        class="lg:col-span-1 xl:col-span-1 h-full flex flex-col justify-between lg:row-span-2 ring-1 dark:ring-white/10 ring-primary/5 bg-white dark:bg-secondary shadow-xl dark:shadow-thick rounded-3xl p-8 custom-grid-item"
+      >
+        <PromotedYouTube />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+  @media (min-width: 1024px) and (max-width: 1100px) {
+    .custom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .custom-grid-item {
+      /* Additional styling to ensure content looks good in this specific viewport */
+    }
+  }
+
+  /* Ensuring that for very tall viewports, we manage space effectively */
+  @media (min-height: 5000px) {
+    .tall-viewport-adjustment {
+      padding-bottom: 2rem;
+    }
+  }
+  /* Hover effect for elements with ring-1 class */
+  .ring-1 {
+    transition: box-shadow 0.3s ease, transform 0.3s ease, ring-color 0.3s ease;
+  }
+
+  .ring-1:hover {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transform: scale(1.03);
+    ring-color: var(--ring-hover-color, ring-primary/10); 
+    background-color: #212427;
+  }
+</style>
+
