@@ -14,7 +14,7 @@ Frugal Thinker is a multi-faceted platform that offers a rich blend of financial
 - **Life Improvement Tips**: Strategies and advice on improving various aspects of your daily life.
 - **Motivation & Personal Growth**: Fueling your journey to a better self with inspirational content and success stories.
 - **Community Support**: Connecting individuals to a community engaged in pursuing a balanced, fulfilling life.
-- **Responsive Design**: Inspired by Bento's grid principles, our website offers a seamless user experience across all devices.
+- **Responsive Design**: Inspired by Bento Grid principles, our website offers a seamless user experience across all devices.
 
 ### Built With
 
