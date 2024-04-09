@@ -1,20 +1,12 @@
-# Frugal Thinker Website
+# Frugal Thinker 
 
-## Our Philosophy
-
-At Frugal Thinker, our mission transcends mere financial advice. We are here to guide and motivate you through the intricacies of life's financial aspects as well as personal growth and self-improvement. We believe in building a 'better you' by embracing transparency, sharing real-life experiences, and providing the tools for self-empowerment and resilience.
+Frugal Thinker is my digital sanctuary where I chart the journey of my thoughts, finances, fitness journey, and the everyday victories that make life unique. Here, I lay it all bare—no filters, no pretense, just the raw and real me. I believe in transparency, in being candid about life's ups and downs, and in sharing the lessons learned along the way. 
 
 ## About The Project
 
-Frugal Thinker is a multi-faceted platform that offers a rich blend of financial wisdom, life coaching, and motivational insights. Our resources are designed to help you craft not only a financially savvy lifestyle but also to inspire a holistic approach to personal development.
+I built this project using Astro; which as been one of the best developer experiences I've had in years. Everything is fast, easy to learn and pushes your creative boundaries. I fell in love with bentno-grids and used the same design principle in the front-end leveraging tailwind. The database is sqlite. 
+The "Tiny Stack" published by Shayan inspired the development:https://logsnag.com/blog/the-tiny-stack 
 
-### Features
-
-- **Holistic Financial Guidance**: Tackling personal finance with a broad perspective to fit it within the larger context of life goals.
-- **Life Improvement Tips**: Strategies and advice on improving various aspects of your daily life.
-- **Motivation & Personal Growth**: Fueling your journey to a better self with inspirational content and success stories.
-- **Community Support**: Connecting individuals to a community engaged in pursuing a balanced, fulfilling life.
-- **Responsive Design**: Inspired by Bento Grid principles, our website offers a seamless user experience across all devices.
 
 ### Built With
 
@@ -51,11 +43,7 @@ npm install npm@latest -g
 
 ## Usage
 
-Utilize the Frugal Thinker platform as a springboard for both financial acumen and personal betterment. We encourage you to explore the tools and articles, and even contribute your insights and stories.
-
-## Contributing
-
-We believe in the power of community and collective improvement. Contributions to extend the breadth and depth of our content are warmly welcomed.
+Utilize the Frugal Thinker platform as a springboard for both financial acumen and personal betterment. I encourage you to explore the tools and articles, and even contribute your insights and stories.
 
 ## License
 
