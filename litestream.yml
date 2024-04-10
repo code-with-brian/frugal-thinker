@@ -1,0 +1,5 @@
+dbs:
+  - path: /data/db.sqlite3
+    replicas:
+      - url: ${REPLICA_URL}
+        account-key:  ${LITESTREAM_ACCESS_KEY_ID}    

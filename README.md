@@ -4,8 +4,9 @@ Frugal Thinker is my digital sanctuary where I chart the journey of my thoughts,
 
 ## About The Project
 
-I built this project using Astro; which as been one of the best developer experiences I've had in years. Everything is fast, easy to learn and pushes your creative boundaries. I fell in love with bentno-grids and used the same design principle in the front-end leveraging tailwind. The database is sqlite. 
-The "Tiny Stack" published by Shayan inspired the development:https://logsnag.com/blog/the-tiny-stack 
+I built this project with Astro, and honestly, it's been the best coding ride I've had in years. Everything's fast, the learning curve isn't steep, and it really lets you get creative without feeling like you're in over your head. I stumbled upon bentno-grids and just had to use it for the front-end, mixing it with Tailwind for that extra flair. The back-end? Just a straightforward SQLite database.
+
+The whole idea got kick-started by something called the "Tiny Stack" that Shayan jabbered about in a blog post. Basically, it's about keeping things simple but effective, and that's what I went for. No fluff, just building something I like, with tools I enjoyed using
 
 
 ### Built With
