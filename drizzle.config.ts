@@ -5,6 +5,8 @@ export default {
   schema: './src/models/schema.ts',
   out: './drizzle',
   driver: 'better-sqlite',
+  verbose: true,
+  strict: true,
   dbCredentials: {
     url:
       process.env.NODE_ENV === 'production'
