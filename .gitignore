@@ -30,4 +30,6 @@ data/
 
 # Ignore .sqlite3 files
 *.sqlite3
+
+fly.toml
 ```
