@@ -5,9 +5,9 @@ import sitemap from '@astrojs/sitemap';
 import node from '@astrojs/node';
 import pagefind from "astro-pagefind";
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://frugalthinker.com',
+  server: { port: 8080 },
   integrations: [
     tailwind(),
     sitemap({
