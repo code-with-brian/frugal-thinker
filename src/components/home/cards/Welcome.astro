@@ -33,15 +33,15 @@ const allPosts = await Astro.glob('../../../pages/posts/*.md');
 </div>
 
 <style>
-  @media (max-width: 640px) { /* Adjust the max-width as per your mobile breakpoint */
+  @media (max-width: 640px) {
     .post-item {
       flex-direction: column;
-      align-items: flex-start; /* Align items to the start to keep the title aligned left */
+      align-items: flex-start; 
     }
     .post-date {
-      width: 100%; /* Ensure the date takes the full width on mobile */
-      text-align: left; /* Align the date text to the left */
-      margin-top: 4px; /* Optional margin for spacing */
+      width: 100%; 
+      text-align: left; 
+      margin-top: 4px;
     }
   }
 </style>
