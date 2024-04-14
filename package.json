@@ -14,6 +14,7 @@
     "@astrojs/check": "^0.5.10",
     "@astrojs/mdx": "^2.2.3",
     "@astrojs/node": "^8.2.5",
+    "@astrojs/partytown": "^2.0.4",
     "apexcharts": "^3.48.0",
     "astro": "^4.5.13",
     "astro-lazy-youtube-embed": "^0.4.0",

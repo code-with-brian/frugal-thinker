@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 import node from '@astrojs/node';
 import pagefind from "astro-pagefind";
+import partytown from "@astrojs/partytown";
 
 export default defineConfig({
   site: 'https://frugalthinker.com',
@@ -37,7 +38,12 @@ export default defineConfig({
         },
       },
     }),
-    pagefind()
+    pagefind(),
+    partytown({
+			config: {
+			  forward: ["dataLayer.push"],
+			},
+		}),
   ],
   output: 'hybrid',
   adapter: node({
