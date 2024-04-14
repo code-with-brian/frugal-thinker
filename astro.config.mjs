@@ -7,15 +7,15 @@ import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://nikolovlazar.com',
+  site: 'https://frugalthinker.com',
   integrations: [
     tailwind(),
     sitemap({
       filter: (page) => !/https:\/\/frugalthinker\.com\/blog\/[0-9]+/.test(page),
       customPages: [
-        'https://nikolovlazar.com/discord',
-        'https://nikolovlazar.com/twitch',
-        'https://nikolovlazar.com/twitter',
+        'https://frugalthinker.com/discord',
+        'https://frugalthinker.com/twitch',
+        'https://frugalthinker.com/twitter',
       ],
       changefreq: 'weekly',
       lastmod: new Date(),

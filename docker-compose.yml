@@ -9,6 +9,6 @@ services:
     env_file:
       - .env
     ports:
-      - "4321:4321"
+      - "8080:8080"
     volumes:
       - $PWD/data:/data

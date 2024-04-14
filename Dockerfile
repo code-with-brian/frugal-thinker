@@ -25,8 +25,8 @@ COPY --from=builder /app/litestream.yml /etc/litestream.yml
 RUN chmod +x run.sh
 
 ENV HOST=0.0.0.0
-ENV PORT=4321
+ENV PORT=8080
 ENV NODE_ENV=production
-EXPOSE 4321
+EXPOSE 8080
 
 CMD ["sh", "run.sh"]
