@@ -1,6 +1,6 @@
 # Frugal Thinker 
 
-Frugal Thinker is my digital sanctuary where I chart the journey of my thoughts, finances, fitness journey, and the everyday victories that make life unique. Here, I lay it all bare—no filters, no pretense, just the raw and real me. I believe in transparency, in being candid about life's ups and downs, and in sharing the lessons learned along the way. 
+Frugal Thinker is my digital sanctuary where I chart the journey of my thoughts, finances, fitness journey, and the everyday victories that make life unique. I believe in transparency, in being candid about life's ups and downs, and in sharing the lessons learned along the way. 
 
 ## About The Project
 
