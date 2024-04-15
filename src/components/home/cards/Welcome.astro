@@ -3,6 +3,8 @@ import { Image } from "astro:assets";
 import logoImage from "../../../../public/images/logo.png";
 const allPosts = await Astro.glob('../../../pages/posts/*.md');
 ---
+
+<!-- Trigger Action -->
 <div class="relative flex justify-center gap-x-4">
   <Image src={logoImage} alt="A wealthy pig because he's frugal" loading="eager" />
 </div>
