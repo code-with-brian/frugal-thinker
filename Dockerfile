@@ -12,6 +12,9 @@ FROM dependencies AS builder
 COPY . .
 RUN mkdir -p /data
 
+# Note: Alpine does not use apt-get, it uses apk. Add apk update && apk add openssh-client if needed.
+# RUN apt-get install openssh-client
+
 RUN npm run build
 
 # Runtime image
@@ -23,6 +26,9 @@ COPY --from=litestream/litestream:latest /usr/local/bin/litestream /usr/local/bi
 COPY --from=builder /app/scripts/run.sh run.sh
 COPY --from=builder /app/litestream.yml /etc/litestream.yml
 RUN chmod +x run.sh
+
+# Copy db.sqlite3 to /data directory in the runtime container
+COPY ./db.sqlite3 /data/db.sqlite3
 
 ENV HOST=0.0.0.0
 ENV PORT=8080
