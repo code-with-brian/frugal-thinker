@@ -11,7 +11,6 @@ RUN npm ci
 FROM dependencies AS builder
 COPY . .
 RUN mkdir -p /data
-
 RUN npm run build
 
 # Runtime image
@@ -23,6 +22,9 @@ COPY --from=litestream/litestream:latest /usr/local/bin/litestream /usr/local/bi
 COPY --from=builder /app/scripts/run.sh run.sh
 COPY --from=builder /app/litestream.yml /etc/litestream.yml
 RUN chmod +x run.sh
+
+# Install SQLite
+RUN apk add --update sqlite sqlite-dev
 
 ENV HOST=0.0.0.0
 ENV PORT=8080
