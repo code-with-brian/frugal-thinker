@@ -6,9 +6,16 @@ const results = await db.select({balance:accounts.balance}).from(accounts);
 
 let totalBalance = 0; // Initialize total balance
 
-results.forEach(account => {
-  totalBalance += account.balance; // Sum up the balances
-});
+try {
+    const results = await db.select({balance: accounts.balance}).from(accounts);
+
+    results.forEach(account => {
+      totalBalance += account.balance; // Sum up the balances
+    });
+} catch (error) {
+    console.error("Failed to connect to the database or query data:", error);
+}
+
 
 ---
 <div class="flex items-center justify-center h-full w-full">
