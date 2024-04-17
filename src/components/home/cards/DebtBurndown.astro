@@ -8,17 +8,22 @@ import BaseChart from "../../charts/BaseChart.astro";
 
 // Aggregate payments per account
 async function aggregatePaymentsByAccount() {
-  const paymentSums = await db
-    .select({
-      accountId: transactions.accountId,
-      totalPayments: sum(transactions.amount),
-    })
-    .from(transactions)
-    .where(eq(transactions.type, "debt-payment"))// Filter for transactions of type 'debt-payment'
-    .groupBy(transactions.accountId)
-    .execute();
+  try {
+    const paymentSums = await db
+      .select({
+        accountId: transactions.accountId,
+        totalPayments: sum(transactions.amount),
+      })
+      .from(transactions)
+      .where(eq(transactions.type, "debt-payment"))
+      .groupBy(transactions.accountId)
+      .execute();
 
-  return paymentSums; // Returns [{ accountId: 1, totalPayments: 600 }, ...]
+    return paymentSums; 
+  } catch (error) {
+    console.error("Failed to aggregate payments by account:", error);
+    throw error; /
+  }
 }
 
 // Fetch account records and include the aggregated payments
