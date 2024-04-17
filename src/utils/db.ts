@@ -8,7 +8,6 @@ const sqlite = new Database(isProd ? '/data/db.sqlite3' : './db.sqlite3');
 
 export const db = drizzle(sqlite, { schema });
 
-// 
 try {
   migrate(db, { migrationsFolder: './drizzle' });
   console.log("Migrations applied successfully.");
