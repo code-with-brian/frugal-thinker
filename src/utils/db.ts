@@ -6,9 +6,9 @@ import { migrate } from 'drizzle-orm/better-sqlite3/migrator';
 const isProd = process.env.NODE_ENV === 'production';
 const sqlite = new Database(isProd ? '/data/db.sqlite3' : './db.sqlite3');
 
-
 export const db = drizzle(sqlite, { schema });
 
+// 
 try {
   migrate(db, { migrationsFolder: './drizzle' });
   console.log("Migrations applied successfully.");
