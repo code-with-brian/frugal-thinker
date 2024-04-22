@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "db:migrations": "drizzle-kit generate:sqlite --out ./app/drizzle"
+    "db:migrations": "drizzle-kit generate:sqlite --out ./app/drizzle",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
@@ -22,6 +23,7 @@
     "better-sqlite3": "^9.4.3",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.6",
+    "flatted": "^3.3.1",
     "sqlite3": "^5.1.7",
     "typescript": "^5.4.3"
   },
@@ -31,7 +33,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.12",
     "@types/better-sqlite3": "^7.6.9",
-    "drizzle-kit": "^0.20.14",
+    "drizzle-kit": "^0.20.17",
     "tailwindcss": "^3.4.3"
   }
 }

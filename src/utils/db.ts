@@ -7,10 +7,11 @@ const isProd = process.env.NODE_ENV === 'production';
 const sqlite = new Database(isProd ? '/data/db.sqlite3' : './db.sqlite3');
 
 export const db = drizzle(sqlite, { schema });
+console.log(db);
 
 try {
   migrate(db, { migrationsFolder: './drizzle' });
   console.log("Migrations applied successfully.");
 } catch (error) {
-  console.error("Failed to apply migrations:", error);
+  console.log("Failed to apply migrations:", error);
 }

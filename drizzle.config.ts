@@ -10,7 +10,7 @@ export default {
   dbCredentials: {
     url:
       process.env.NODE_ENV === 'production'
-        ? '/data/db.sqlite3'
+        ? 'data/db.sqlite3'
         : './db.sqlite3'
   }
 } satisfies Config;

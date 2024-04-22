@@ -12,6 +12,7 @@ FROM dependencies AS builder
 COPY . .
 RUN mkdir -p /data
 RUN npm run build
+RUN chmod a+rw /data
 
 # Runtime image
 FROM base AS runtime
