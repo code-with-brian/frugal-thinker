@@ -1,6 +1,8 @@
+![Screnshot of FrugalThinker.com](https://frugalthinkerstorage.blob.core.windows.net/frugal-thinker-videos/github/website-screenshot.png)
+
 # Frugal Thinker 
 
-Frugal Thinker is my digital sanctuary where I chart the journey of my thoughts, finances, fitness journey, and the everyday victories that make life unique. I believe in transparency, in being candid about life's ups and downs, and in sharing the lessons learned along the way. 
+Frugal Thinker is my digital sanctuary. I use it to post abotu my goals, milestones, struggles and achievements. 
 
 ## About The Project
 
@@ -12,7 +14,6 @@ The whole idea got kick-started by something called the "Tiny Stack" that Shayan
 ### Built With
 
 - [Astro](https://astro.build/) - For building fast and modern websites.
-- [React.js](https://reactjs.org/) - Used to build interactive UI components.
 - [Node.js](https://nodejs.org/) - The runtime environment for our backend processes.
 - [Sqlite](https://www.sqlite.org/) - The database platform that handles our app's data.
 

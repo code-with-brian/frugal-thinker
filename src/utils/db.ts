@@ -7,7 +7,6 @@ const isProd = process.env.NODE_ENV === 'production';
 const sqlite = new Database('./db.sqlite3');
 
 export const db = drizzle(sqlite, { schema });
-console.log(db);
 
 try {
   migrate(db, { migrationsFolder: './drizzle' });
