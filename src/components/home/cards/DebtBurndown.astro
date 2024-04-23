@@ -1,16 +1,10 @@
 ---
-import { Debug } from "astro:components";
-// Import necessary modules and types
 import { transactions, accounts } from "../../../models/schema";
 import { db } from "../../../utils/db";
 import { sum, eq } from "drizzle-orm";
 import type { ApexOptions } from "apexcharts";
 import BaseChart from "../../charts/BaseChart.astro";
-import { stringify, parse } from 'flatted';
 
-const acc = await db.select().from(accounts).execute();
-
-const dbJson = stringify(acc);
 
 // Aggregate payments per account
 async function aggregatePaymentsByAccount() {
@@ -117,5 +111,4 @@ const chartOptions: ApexOptions = {
   },
 };
 ---
-<Debug {dbJson}/>
 <BaseChart options={chartOptions} />
