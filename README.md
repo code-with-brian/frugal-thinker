@@ -1,14 +1,6 @@
-![Screnshot of FrugalThinker.com](https://frugalthinkerstorage.blob.core.windows.net/frugal-thinker-videos/github/website-screenshot.png)
-
 # Frugal Thinker 
 
-Frugal Thinker is my digital sanctuary. I use it to post abotu my goals, milestones, struggles and achievements. 
-
-## About The Project
-
-I built this project with Astro, and honestly, it's been the best coding ride I've had in years. Everything's fast, the learning curve isn't steep, and it really lets you get creative without feeling like you're in over your head. I stumbled upon bentno-grids and just had to use it for the front-end, mixing it with Tailwind for that extra flair. The back-end? Just a straightforward SQLite database.
-
-The whole idea got kick-started by something called the "Tiny Stack" that Shayan jabbered about in a blog post. Basically, it's about keeping things simple but effective, and that's what I went for. No fluff, just building something I like, with tools I enjoyed using
+Frugal thinker is my blog 
 
 
 ### Built With
@@ -42,10 +34,6 @@ npm install npm@latest -g
    \```sh
    npm run dev
    \```
-
-## Usage
-
-Utilize the Frugal Thinker platform as a springboard for both financial acumen and personal betterment. I encourage you to explore the tools and articles, and even contribute your insights and stories.
 
 ## License
 
