@@ -1,6 +1,6 @@
 ---
 import Search from "astro-pagefind/components/Search";
-export const prerender = false;
+export const prerender = true;
 
 const q = Astro.url.searchParams.get("q") ?? undefined;
 ---

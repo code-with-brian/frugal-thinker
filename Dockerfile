@@ -1,35 +1,23 @@
-# Base image
-FROM node:lts-alpine AS base
+FROM node:lts AS base
 WORKDIR /app
 
-# Dependencies
-FROM base AS dependencies
 COPY package.json package-lock.json ./
-RUN npm ci
 
-# Builder stage
-FROM dependencies AS builder
+FROM base AS prod-deps
+RUN npm install --production
+
+FROM base AS build-deps
+RUN npm install --production=false
+
+FROM build-deps AS build
 COPY . .
-RUN mkdir -p /data
 RUN npm run build
-RUN chmod a+rw /data
 
-# Runtime image
 FROM base AS runtime
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/drizzle ./drizzle
-COPY --from=litestream/litestream:latest /usr/local/bin/litestream /usr/local/bin/litestream
-COPY --from=builder /app/scripts/run.sh run.sh
-COPY --from=builder /app/litestream.yml /etc/litestream.yml
-RUN chmod +x run.sh
-
-# Install SQLite
-RUN apk add --update sqlite sqlite-dev
+COPY --from=prod-deps /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
 
 ENV HOST=0.0.0.0
 ENV PORT=8080
-ENV NODE_ENV=production
 EXPOSE 8080
-
-CMD ["sh", "run.sh"]
+CMD node ./dist/server/entry.mjs
