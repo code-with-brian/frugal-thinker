@@ -5,8 +5,6 @@ import { sum, eq } from "drizzle-orm";
 import type { ApexOptions } from "apexcharts";
 import BaseChart from "../../charts/BaseChart.astro";
 
-
-// Aggregate payments per account
 async function aggregatePaymentsByAccount() {
   const paymentSums = await db
     .select({
@@ -14,7 +12,7 @@ async function aggregatePaymentsByAccount() {
       totalPayments: sum(transactions.amount),
     })
     .from(transactions)
-    .where(eq(transactions.type, "debt-payment"))// Filter for transactions of type 'debt-payment'
+    .where(eq(transactions.type, "debt-payment")) // Filter for transactions of type 'debt-payment'
     .groupBy(transactions.accountId)
     .execute();
 
@@ -76,7 +74,7 @@ const chartOptions: ApexOptions = {
       columnWidth: '60%',
     }
   },
-  colors: ['#f0ad4e', '#5cb85c'], // Adjust colors to differentiate starting balance and payments
+  colors: ['#1f77b4', '#ff7f0e'], // Brighter colors for better contrast
   dataLabels: {
     enabled: false,
   },
@@ -84,7 +82,7 @@ const chartOptions: ApexOptions = {
     type: 'category',
     labels: {
       style: {
-        colors: '#ffffff', // Adjust to your theme
+        colors: '#ffffff', // White labels for dark background
       },
     },
   },
@@ -92,11 +90,17 @@ const chartOptions: ApexOptions = {
     title: {
       text: 'Amount ($)',
       style: {
-        color: '#ffffff', // Adjust to your theme
+        color: '#ffffff', // White title for dark background
+      },
+    },
+    labels: {
+      style: {
+        colors: '#ffffff', // White labels for dark background
       },
     },
   },
   tooltip: {
+    theme: 'dark', // Dark theme for tooltip
     y: {
       formatter: function(val) {
         return "$" + val.toFixed(2);
@@ -106,9 +110,10 @@ const chartOptions: ApexOptions = {
   legend: {
     show: true,
     labels: {
-      colors: '#ffffff', // Adjust to your theme
+      colors: '#ffffff', // White legend labels for dark background
     },
   },
 };
+
 ---
 <BaseChart options={chartOptions} />

@@ -12,6 +12,7 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@astro-community/astro-embed-twitter": "^0.5.4",
     "@astrojs/check": "^0.5.10",
     "@astrojs/db": "^0.10.6",
     "@astrojs/mdx": "^2.3.1",
@@ -25,6 +26,7 @@
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.6",
     "flatted": "^3.3.1",
+    "react-twitter-embed": "^4.0.4",
     "sqlite3": "^5.1.7",
     "typescript": "^5.4.3"
   },

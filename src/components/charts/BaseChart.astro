@@ -55,13 +55,11 @@ const { options } = Astro.props;
     }
   }
 
-  // Define the custom element if it's not already defined
   if (!customElements.get('apex-chart')) {
     customElements.define('apex-chart', ChartElement);
   }
 </script>
 
-<!-- Use the custom element in the component's HTML, passing options and formatter data -->
 <apex-chart data-options={JSON.stringify(options)}>
   <div class="flex items-center justify-center h-full w-full apex-chart"></div>
 </apex-chart>
