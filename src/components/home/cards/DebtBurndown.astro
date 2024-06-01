@@ -5,33 +5,35 @@ import { sum, eq } from "drizzle-orm";
 import type { ApexOptions } from "apexcharts";
 import BaseChart from "../../charts/BaseChart.astro";
 
+// Aggregate payments by account
 async function aggregatePaymentsByAccount() {
-  const paymentSums = await db
+  return await db
     .select({
       accountId: transactions.accountId,
       totalPayments: sum(transactions.amount),
     })
     .from(transactions)
-    .where(eq(transactions.type, "debt-payment")) // Filter for transactions of type 'debt-payment'
+    .where(eq(transactions.type, "debt-payment"))
     .groupBy(transactions.accountId)
     .execute();
-
-  return paymentSums; // Returns [{ accountId: 1, totalPayments: 600 }, ...]
 }
 
-// Fetch account records and include the aggregated payments
-const accountRecords = await db
-  .select({
-    id: accounts.id,
-    name: accounts.name,
-    balance: accounts.balance, // Starting balance
-  })
-  .from(accounts)
-  .execute();
+// Fetch account records
+async function fetchAccountRecords() {
+  return await db
+    .select({
+      id: accounts.id,
+      name: accounts.name,
+      balance: accounts.balance,
+    })
+    .from(accounts)
+    .execute();
+}
 
+const accountRecords = await fetchAccountRecords();
 const paymentsByAccount = await aggregatePaymentsByAccount();
 
-// Combine account details with their respective total payments
+// Combine data for chart
 const combinedData = accountRecords.map(account => {
   const paymentInfo = paymentsByAccount.find(p => p.accountId === account.id) || { totalPayments: 0 };
   return {
@@ -41,7 +43,6 @@ const combinedData = accountRecords.map(account => {
   };
 });
 
-// Prepare the series data for the stacked chart
 const seriesDataStartingBalance = combinedData.map(account => ({
   x: account.name,
   y: account.startingBalance
@@ -52,7 +53,7 @@ const seriesDataDebtPayments = combinedData.map(account => ({
   y: account.totalPayments
 }));
 
-// Chart options setup for stacked bar chart
+// Chart options
 const chartOptions: ApexOptions = {
   series: [{
     name: "Starting Balance",
@@ -66,15 +67,22 @@ const chartOptions: ApexOptions = {
   chart: {
     height: 350,
     type: "bar",
-    stacked: true, // Enable stacked bars
+    stacked: true,
+    toolbar: {
+      show: false
+    },
+    background: '#1f2937',
   },
   plotOptions: {
     bar: {
-      horizontal: false, // Set to true if you prefer horizontal bars
+      horizontal: false,
       columnWidth: '60%',
+      dataLabels: {
+        position: 'top',
+      },
     }
   },
-  colors: ['#1f77b4', '#ff7f0e'], // Brighter colors for better contrast
+  colors: ['#1f77b4', '#ff7f0e'],
   dataLabels: {
     enabled: false,
   },
@@ -82,7 +90,7 @@ const chartOptions: ApexOptions = {
     type: 'category',
     labels: {
       style: {
-        colors: '#ffffff', // White labels for dark background
+        colors: '#ffffff',
       },
     },
   },
@@ -90,17 +98,17 @@ const chartOptions: ApexOptions = {
     title: {
       text: 'Amount ($)',
       style: {
-        color: '#ffffff', // White title for dark background
+        color: '#ffffff',
       },
     },
     labels: {
       style: {
-        colors: '#ffffff', // White labels for dark background
+        colors: '#ffffff',
       },
     },
   },
   tooltip: {
-    theme: 'dark', // Dark theme for tooltip
+    theme: 'dark',
     y: {
       formatter: function(val) {
         return "$" + val.toFixed(2);
@@ -110,10 +118,44 @@ const chartOptions: ApexOptions = {
   legend: {
     show: true,
     labels: {
-      colors: '#ffffff', // White legend labels for dark background
+      colors: '#ffffff',
     },
   },
+  grid: {
+    padding: {
+      left: 20,
+      right: 20,
+      top: 10,
+      bottom: 10
+    }
+  }
 };
-
 ---
-<BaseChart options={chartOptions} />
+
+<div class="chart-container">
+  <BaseChart options={chartOptions} />
+</div>
+
+<style>
+  .chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background: #1f2937;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+  }
+
+  .chart-container > div {
+    width: 100%;
+    height: 100%;
+  }
+
+  .apexcharts-canvas {
+    width: 100% !important;
+  }
+</style>

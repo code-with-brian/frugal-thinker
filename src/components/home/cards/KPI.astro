@@ -1,5 +1,5 @@
 ---
-import { transactions, accounts,activities } from "../../../models/schema";
+import { transactions, accounts, activities } from "../../../models/schema";
 import { db } from "../../../utils/db";
 import { sum, eq } from "drizzle-orm";
 import type { ApexOptions } from "apexcharts";
@@ -19,13 +19,20 @@ const runRecords = await db
 // Prepare the series data for the line chart
 const seriesDataDistance = runRecords.map(run => ({
   x: new Date(run.date).getTime(), // Convert date to timestamp
-  y: run.distance
+  y: parseFloat(run.distance.toFixed(2)) // Fix distance to 2 decimal places
 }));
 
 const seriesDataTime = runRecords.map(run => ({
   x: new Date(run.date).getTime(), // Convert date to timestamp
-  y: run.time
+  y: parseFloat((run.time / 60).toFixed(2)) // Convert time from minutes to hours and fix to 2 decimal places
 }));
+
+// Function to convert hours to hours and minutes
+function formatTime(hours: number) {
+  const hrs = Math.floor(hours);
+  const mins = Math.round((hours - hrs) * 60);
+  return `${hrs}h ${mins}m`;
+}
 
 // Chart options setup for dual-axis line chart
 const chartOptions: ApexOptions = {
@@ -34,7 +41,7 @@ const chartOptions: ApexOptions = {
     data: seriesDataDistance,
     type: 'line'
   }, {
-    name: "Time (min)",
+    name: "Time (minutes)",
     data: seriesDataTime,
     type: 'line'
   }],
@@ -44,6 +51,14 @@ const chartOptions: ApexOptions = {
     zoom: {
       enabled: true
     },
+  },
+  title: {
+    text: 'Running Progress 🏃🏻',
+    align: 'center',
+    style: {
+      fontSize: '18px',
+      color: '#ffffff' // Adjust to your theme
+    }
   },
   stroke: {
     width: 2,
@@ -56,6 +71,9 @@ const chartOptions: ApexOptions = {
       style: {
         colors: '#ffffff', // Adjust to your theme
       },
+      formatter: function(val) {
+        return new Date(val).toISOString().slice(0, 16).replace('T', ' '); // Fix x values to show date and time in readable format
+      }
     },
   },
   yaxis: [{
@@ -69,11 +87,14 @@ const chartOptions: ApexOptions = {
       style: {
         colors: '#1f77b4', // Adjust to your theme
       },
+      formatter: function(val) {
+        return val.toFixed(2); // Fix y values to 2 decimal places
+      }
     },
   }, {
     opposite: true,
     title: {
-      text: 'Time (min)',
+      text: 'Time (minutes)',
       style: {
         color: '#ff7f0e', // Adjust to your theme
       },
@@ -82,14 +103,20 @@ const chartOptions: ApexOptions = {
       style: {
         colors: '#ff7f0e', // Adjust to your theme
       },
+      formatter: function(val) {
+        return val.toFixed(2); // Fix y values to 2 decimal places
+      }
     },
   }],
   tooltip: {
     shared: true,
     intersect: false,
     y: {
-      formatter: function(val) {
-        return val.toFixed(2);
+      formatter: function(val, { seriesIndex }) {
+        if (seriesIndex === 1) {
+          return formatTime(val);
+        }
+        return val.toFixed(2); // Format to 2 decimal places
       }
     }
   },
@@ -100,5 +127,7 @@ const chartOptions: ApexOptions = {
     },
   },
 };
+
 ---
 <BaseChart options={chartOptions} />
+

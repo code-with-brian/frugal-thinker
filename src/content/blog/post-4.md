@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/BlogPost.astro
-title: Debt is a chain. Cut it off or be dragged down."
+title: Budgeting isn't optional. Track every dollar, cut the fat.
 author: Frugal Thinker
 description: "This post will show up on its own!"
 pubDate: 2022-08-08

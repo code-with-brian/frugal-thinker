@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/BlogPost.astro
-title: How to Travel the World on a Shoestring Budget
+title: Stop buying junk if you're broke. Prioritize or stay poor.
 author: Frugal Thinker
 description: "This post will show up on its own!"
 pubDate: 2022-08-08

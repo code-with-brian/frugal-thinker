@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/BlogPost.astro
-title: 10 Creative Ways to Save Money on Groceries Without Sacrificing Quality
+title: Financial independence is earned, not given. Hustle hard.
 author: Frugal Thinker
 description: "This post will show up on its own!"
 pubDate: 2022-08-08
