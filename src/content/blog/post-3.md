@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/BlogPost.astro
 title: Financial independence is earned, not given. Hustle hard.
 author: Frugal Thinker
 description: "This post will show up on its own!"

@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, getEntryBySlug } from "astro:content";
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  return allPosts.map(post => ({
+    params: { slug: post.slug }
+  }));
+}
+
+const { slug } = Astro.params;
+const post = await getEntryBySlug('blog', slug);
+
+if (!post) {
+  throw new Error(`Post not found for slug: ${slug}`);
+}
+---
+
+<Layout title={post.data.title}>
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">{post.data.title}</h1>
+      <p class="post-meta">By Frugal Thinker on {new Date(post.data.pubDate).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+    </header>
+    <section class="post-content" set:html={post.body}>
+    </section>
+    <footer class="post-footer">
+      <p>Tags: {post.data.tags.join(', ')}</p>
+      <p>Share: 
+        <a href={`https://twitter.com/share?url=${Astro.url}&text=${post.data.title}`} target="_blank">Twitter</a> | 
+        <a href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url}`} target="_blank">Facebook</a>
+      </p>
+      <a href="/" class="back-button">← Back to Home</a>
+    </footer>
+  </article>
+
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .post {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    .post:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .post-header {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .post-title {
+      font-size: 2.5rem;
+      color: #1a202c;
+      margin-bottom: 0.5rem;
+    }
+    .post-meta {
+      font-size: 1rem;
+      color: #718096;
+    }
+    .post-content {
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #2d3748;
+    }
+    .post-content p {
+      margin-bottom: 1rem;
+    }
+    .post-footer {
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .post-footer p {
+      margin-bottom: 1rem;
+    }
+    .back-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #3182ce;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+    .back-button:hover {
+      background-color: #2c5282;
+      transform: translateY(-2px);
+    }
+    a {
+      color: #3182ce;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</Layout>
