@@ -20,6 +20,7 @@
     "@astrojs/partytown": "^2.1.0",
     "apexcharts": "^3.48.0",
     "astro": "^4.7.0",
+    "astro-github-component": "^1.0.4",
     "astro-lazy-youtube-embed": "^0.4.0",
     "astro-pagefind": "^1.5.0",
     "astro-spotify": "^0.1.6",

@@ -2,13 +2,12 @@
 const goalResults = await Astro.glob("../../../content/goals/*.md");
 ---
 
-<!-- The h3 is visually integrated into the div below -->
 <div class="bg-logoBlue px-4 pt-5 pb-2 rounded-t-lg sm:px-6 shadow">
   <h3 class="text-lg leading-6 font-light text-white tracking-wide">
     My Victories 🏆
   </h3>
 </div>
-<div class="bg-white shadow overflow-hidden sm:rounded-b-md">
+<div class="bg-white shadow overflow-hidden sm:rounded-b-md" style="height:90%">
   <ul class="divide-y divide-gray-200">
     <!-- Use Astro's expression syntax to iterate over your goal results -->
     {
