@@ -1,16 +1,16 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from "../../layouts/Layout.astro";
 import { getCollection, getEntryBySlug } from "astro:content";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
-  return allPosts.map(post => ({
-    params: { slug: post.slug }
+  const allPosts = await getCollection("blog");
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
   }));
 }
 
 const { slug } = Astro.params;
-const post = await getEntryBySlug('blog', slug);
+const post = await getEntryBySlug("blog", slug);
 
 if (!post) {
   throw new Error(`Post not found for slug: ${slug}`);
@@ -21,15 +21,31 @@ if (!post) {
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">{post.data.title}</h1>
-      <p class="post-meta">By Frugal Thinker on {new Date(post.data.pubDate).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      <p class="post-meta">
+        By Frugal Thinker on {
+          new Date(post.data.pubDate).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        }
+      </p>
     </header>
-    <section class="post-content" set:html={post.body}>
+    <section class="post-content">
+      {post.body}
     </section>
     <footer class="post-footer">
-      <p>Tags: {post.data.tags.join(', ')}</p>
-      <p>Share: 
-        <a href={`https://twitter.com/share?url=${Astro.url}&text=${post.data.title}`} target="_blank">Twitter</a> | 
-        <a href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url}`} target="_blank">Facebook</a>
+      <p>Tags: {post.data.tags.join(", ")}</p>
+      <p>
+        Share:
+        <a
+          href={`https://twitter.com/share?url=${Astro.url}&text=${post.data.title}`}
+          target="_blank">Twitter</a
+        > |
+        <a
+          href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url}`}
+          target="_blank">Facebook</a
+        >
       </p>
       <a href="/" class="back-button">← Back to Home</a>
     </footer>
@@ -38,7 +54,7 @@ if (!post) {
   <style>
     body {
       background-color: #f8fafc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
       color: #333;
@@ -96,7 +112,9 @@ if (!post) {
       border-radius: 4px;
       text-decoration: none;
       font-weight: bold;
-      transition: background-color 0.3s ease, transform 0.2s;
+      transition:
+        background-color 0.3s ease,
+        transform 0.2s;
     }
     .back-button:hover {
       background-color: #2c5282;
