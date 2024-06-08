@@ -1,3 +1,5 @@
+![image](https://github.com/code-with-brian/frugal-thinker/assets/144558318/ce9ae205-d30d-483b-9fbb-97373fb0e2ff)
+
 # Frugal Thinker 
 
 Frugal thinker is my blog 
